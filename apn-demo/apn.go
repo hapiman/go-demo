@@ -15,13 +15,13 @@ func ApnGo() {
 		panic(err)
 	}
 
-	deviceToken := "f6f33d944ebb893365262539cbb3967c7caebd1590ad6d0574151d34171e19b7"
+	deviceToken := "c7b41f67d0c14dd8748e1593cf845d1b1c8574c945b5add3f0844a4b3c0afe4c"
 	notification := &apns2.Notification{}
 	notification.DeviceToken = deviceToken
 	notification.Topic = ApnTopic
 	notification.Payload = []byte(`{"aps":{"alert":"Hello!"}}`)
 
-	client := apns2.NewClient(cert).Production()
+	client := apns2.NewClient(cert).Development()
 	res, err := client.Push(notification)
 
 	if err != nil {
