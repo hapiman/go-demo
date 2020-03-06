@@ -16,7 +16,7 @@ type Person struct {
 	Student
 }
 
-func SetValueToStruct(p *Person) *Person {
+func TrimStructStringSpace(p interface{}) interface{} {
 	vv := reflect.ValueOf(p).Elem()
 	tt := reflect.TypeOf(p).Elem()
 	for i := 0; i < vv.NumField(); i++ {
@@ -26,10 +26,8 @@ func SetValueToStruct(p *Person) *Person {
 			old := f.String()
 			new := strings.TrimSpace(old)
 			key := tt.Field(i).Name
-			fmt.Printf("old: %s. new: %s, key: %s", old, new, key)
+			fmt.Printf("old: %s, new: %s, key: %s", old, new, key)
 			vv.FieldByName(key).Set(reflect.ValueOf(new))
-		case reflect.Struct:
-
 		}
 	}
 	return p
