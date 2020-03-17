@@ -4,3 +4,4 @@ logs
 go.sum
 apns_prod.p12
 apn_const.go
+prometheus.yml
