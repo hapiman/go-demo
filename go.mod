@@ -3,6 +3,7 @@ module go-demo
 go 1.13
 
 require (
+	bou.ke/monkey v1.0.2
 	github.com/aliyun/aliyun-oss-go-sdk v2.0.6+incompatible
 	github.com/apache/thrift v0.13.0
 	github.com/baiyubin/aliyun-sts-go-sdk v0.0.0-20180326062324-cfa1a18b161f // indirect
@@ -23,9 +24,11 @@ require (
 	github.com/imroc/biu v0.0.0-20170329141542-0376ce6761c0
 	github.com/jinzhu/gorm v1.9.11
 	github.com/jonboulle/clockwork v0.1.0 // indirect
+	github.com/json-iterator/go v1.1.9
 	github.com/prometheus/client_golang v1.4.0 // indirect
 	github.com/satori/go.uuid v1.2.0 // indirect
 	github.com/sideshow/apns2 v0.20.0
+	github.com/smartystreets/goconvey v1.6.4
 	github.com/soheilhy/cmux v0.1.4 // indirect
 	github.com/tmc/grpc-websocket-proxy v0.0.0-20200122045848-3419fae592fc // indirect
 	github.com/xiang90/probing v0.0.0-20190116061207-43a291ad63a2 // indirect
