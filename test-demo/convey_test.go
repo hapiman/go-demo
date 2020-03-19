@@ -3,15 +3,16 @@ package test_demo
 import (
 	"encoding/json"
 	"fmt"
+	"os"
+	"strings"
 	"testing"
 
-	"bou.ke/monkey"
+	"github.com/bouk/monkey"
 	jjson "github.com/json-iterator/go"
 	. "github.com/smartystreets/goconvey/convey"
 )
 
 func TestCalculate(t *testing.T) {
-
 	monkey.Patch(json.Marshal, func(v interface{}) ([]byte, error) {
 		fmt.Println("use jsoniter1")
 		return jjson.Marshal(v)
@@ -20,16 +21,6 @@ func TestCalculate(t *testing.T) {
 	monkey.Patch(json.Unmarshal, func(data []byte, v interface{}) error {
 		fmt.Println("use jsoniter2")
 		return jjson.Unmarshal(data, v)
-	})
-
-	monkey.Patch(fmt.Println, func(a ...interface{}) (n int, err error) {
-		fmt.Println("modified")
-		return 1, nil
-	})
-
-	monkey.Patch(Add, func(a, b int) int {
-		fmt.Println("add")
-		return Add(a, b) + Add(a, b)
 	})
 
 	Convey("start test calculate", t, func() {
@@ -63,10 +54,26 @@ func TestCalculate(t *testing.T) {
 	}
 	stuBytes, _ := json.Marshal(ss)
 	json.Unmarshal(stuBytes, &ss)
+
+	guard := monkey.Patch(fmt.Println, func(a ...interface{}) (n int, err error) {
+		return fmt.Print(a)
+	})
+	defer guard.Unpatch()
+
 	fmt.Println("ss =>", ss)
 	fmt.Println(string(stuBytes))
 	fmt.Println("--")
 	fmt.Println(string(stuBytes))
 
-	fmt.Println(Add(2, 3))
+}
+
+func TestMonkey(t *testing.T) {
+	monkey.Patch(fmt.Println, func(a ...interface{}) (n int, err error) {
+		s := make([]interface{}, len(a))
+		for i, v := range a {
+			s[i] = strings.Replace(fmt.Sprint(v), "hell", "*bleep*", -1)
+		}
+		return fmt.Fprintln(os.Stdout, s...)
+	})
+	fmt.Println("what the hell?") // what the *bleep*?
 }

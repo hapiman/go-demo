@@ -3,10 +3,10 @@ module go-demo
 go 1.13
 
 require (
-	bou.ke/monkey v1.0.2
 	github.com/aliyun/aliyun-oss-go-sdk v2.0.6+incompatible
 	github.com/apache/thrift v0.13.0
 	github.com/baiyubin/aliyun-sts-go-sdk v0.0.0-20180326062324-cfa1a18b161f // indirect
+	github.com/bouk/monkey v1.0.1
 	github.com/coreos/bbolt v1.3.3 // indirect
 	github.com/coreos/etcd v3.3.18+incompatible // indirect
 	github.com/coreos/go-semver v0.3.0 // indirect
@@ -40,7 +40,6 @@ require (
 	google.golang.org/grpc v1.26.0 // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
 	sigs.k8s.io/yaml v1.1.0 // indirect
-
 )
 
 replace github.com/coreos/go-systemd => github.com/coreos/go-systemd/v22 v22.0.0
